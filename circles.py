@@ -25,13 +25,16 @@ class Circle:
 
 def draw_Bezier(screen, circles_group):
     t = 0
+    path = []
     while t <= 1:
         x = [i.x for i in circles_group]
         y = [i.y for i in circles_group]
         posX = calc_Bezier(x, t, 1, len(x)-1)
         posY = calc_Bezier(y, t, 1, len(y)-1)
         pygame.draw.circle(screen, (255,255,255), (posX, posY), 2.5)
-        t += 0.005
+        path.append((posX, posY))
+        t += 0.025
+    return path
 
 def calc_Bezier(circles_group, t, k, count):
     power = len(circles_group)-1 - count
